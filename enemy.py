@@ -33,7 +33,6 @@ def main():
     clock = pygame.time.Clock()
 
 
-    # TODO: Create an instance of the Ball class called ball1
 
     balls = []
     for ball_number in range(1):
