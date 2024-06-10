@@ -2,7 +2,7 @@ import pygame
 import sys
 
 balls = []
-
+#gg
 class Ball:
     def __init__(self, screen, x, y, x_speed, y_speed, ball_size, color):
         self.radius = ball_size
