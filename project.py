@@ -23,11 +23,10 @@ class Player:
         if self.y < 0:
             self.y = 0
 
-
+        pass
     def draw(self):
-        pygame.draw.rect(self.screen, (255, 255, 0), (self.x, self.y, self.size, self.size))
-        pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
-
+        pygame.draw.rect(self.screen, (0, 0, 0), (self.x, self.y, 25, 25))
+        pass
 
 def main():
     # turn on pygame
@@ -35,9 +34,12 @@ def main():
 
     # create a screen
     pygame.display.set_caption("No PDA!")
-    # Done: Change the size of the screen as you see fit!
+    # TODO: Change the size of the screen as you see fit!
     screen = pygame.display.set_mode((1000, 700))
 
+    delta = 10
+    gs = 50
+    # let's set the frame rate
     p1 = Player(screen, 55, 55)
 
     # let's set the framerate
@@ -50,13 +52,13 @@ def main():
 
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_a] or pressed_keys[pygame.K_LEFT]:
-            p1.move(-5, 0)
+            p1.move(-delta, 0)
         if pressed_keys[pygame.K_d] or pressed_keys[pygame.K_RIGHT]:
-            p1.move(5, 0)
+            p1.move(delta, 0)
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
-            p1.move(0, -5)
+            p1.move(0, -delta)
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
-            p1.move(0, 5)
+            p1.move(0, delta)
 
             # TODO: Add you events code
 
@@ -88,5 +90,3 @@ def main():
         pygame.display.update()
 
 main()
-
-
