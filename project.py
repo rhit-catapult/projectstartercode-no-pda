@@ -10,7 +10,7 @@ class Player:
         self.y = y
         self.screen = screen
         self.size = 40
-
+     #gg
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
