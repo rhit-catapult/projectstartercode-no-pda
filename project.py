@@ -22,11 +22,20 @@ class Player:
             self.y = self.screen.get_height() - self.size
         if self.y < 0:
             self.y = 0
+        if 110 <= self.x <= 116 and 0 <= self.y <= 551:
+            self.x = 110
+        if 111 <= self.x <= 200 and 540 <= self.y <=550:
+            self.y = 550
+        if 200 >= self.x >= 190 and 0 <= self.y <= 550:
+            self.x = 200
+
 
 
     def draw(self):
         pygame.draw.rect(self.screen, (255, 255, 0), (self.x, self.y, self.size, self.size))
         pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
+    def collision(self):
+        pass
 
 
 def main():
@@ -57,6 +66,7 @@ def main():
             p1.move(0, -5)
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
             p1.move(0, 5)
+
 
             # TODO: Add you events code
 
