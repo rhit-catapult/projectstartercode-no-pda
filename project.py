@@ -3,6 +3,7 @@ import sys
 import random
 import time
 import math
+import wall_class
 
 class Player:
     def __init__(self, screen, x, y):
@@ -10,7 +11,9 @@ class Player:
         self.y = y
         self.screen = screen
         self.size = 40
-     #gg
+        self.rect = None
+
+        #gg
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
@@ -22,18 +25,16 @@ class Player:
             self.y = self.screen.get_height() - self.size
         if self.y < 0:
             self.y = 0
-        if 110 <= self.x <= 116 and 0 <= self.y <= 551:
-            self.x = 110
-        if 111 <= self.x <= 200 and 540 <= self.y <=550:
-            self.y = 550
-        if 200 >= self.x >= 190 and 0 <= self.y <= 550:
-            self.x = 200
+
+
+
+
 
 
 
     def draw(self):
         pygame.draw.rect(self.screen, (255, 255, 0), (self.x, self.y, self.size, self.size))
-        pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
+        self.rect = pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
     def collision(self):
         pass
 
@@ -58,8 +59,18 @@ def main():
                 sys.exit()
 
         pressed_keys = pygame.key.get_pressed()
+
         if pressed_keys[pygame.K_a] or pressed_keys[pygame.K_LEFT]:
-            p1.move(-5, 0)
+            new_x = p1.x - 5
+            hit_any = False
+            for wall in walls:
+                if wall.colliderect(new_x, p1.y, p1.size, p1.size):
+                    print("Wall")
+                    hit_any = True
+            if hit_any:
+                pass
+            else:
+                p1.move(-5, 0)
         if pressed_keys[pygame.K_d] or pressed_keys[pygame.K_RIGHT]:
             p1.move(5, 0)
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
@@ -69,13 +80,14 @@ def main():
 
 
             # TODO: Add you events code
-
+        walls = []
         # TODO: Fill the screen with whatever background color you like!
         screen.fill((255, 255, 255))
         pygame.draw.rect(screen, (98, 226, 108), (0, 0, 150, 150))
         pygame.draw.rect(screen, (98, 226, 108), (screen.get_width()-150, screen.get_height()-150, 150, 150))
-        pygame.draw.rect(screen, (0, 0, 0), (150,0, 50, 550))
-        pygame.draw.rect(screen, (0, 0, 0), (screen.get_width()-200, screen.get_height()-550, 50, 550))
+        walls.append(pygame.draw.rect(screen, (0, 0, 0), (150,0, 50, 550)))
+        walls.append(pygame.draw.rect(screen, (0, 0, 0), (screen.get_width()-200, screen.get_height()-550, 50, 550)))
+
         pygame.draw.circle(screen, (0, 0, 255), (275, 16), 15)
         pygame.draw.circle(screen, (0, 0, 255), (375, 16), 15)
         pygame.draw.circle(screen, (0, 0, 255), (475, 16), 15)
@@ -90,7 +102,12 @@ def main():
         pygame.draw.circle(screen, (0, 0, 255), (625, screen.get_height() - 15), 15)
         pygame.draw.circle(screen, (0, 0, 255), (725, screen.get_height() - 15), 15)
 
+
         p1.draw()
+
+        for wall in walls:
+            if wall.colliderect(p1.x, p1.y, p1.size, p1.size):
+                print("Collision!")
 
         # TODO: Add your project code
 
