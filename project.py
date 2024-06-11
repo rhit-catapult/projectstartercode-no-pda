@@ -1,10 +1,9 @@
 import pygame
 import sys
-import random
-import time
 import math
 import wall_class
 
+import enemy
 class Player:
     def __init__(self, screen, x, y):
         self.x = x
@@ -14,6 +13,9 @@ class Player:
         self.rect = None
 
         #gg
+        self.orig_x = x
+        self.orig_y = y
+     #gg
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
@@ -31,12 +33,26 @@ class Player:
 
 
 
+        if 110 <= self.x <= 116 and 0 <= self.y <= 551:
+            self.x = 110
+        if 111 <= self.x <= 200 and 540 <= self.y <=550:
+            self.y = 550
+        if 200 >= self.x >= 190 and 0 <= self.y <= 550:
+            self.x = 200
+        if 800 <= self.x <= 850 and 150 <= self.y <= 700:
+            self.x = 850
+        if 760 <= self.x <= 850 and 110 <= self.y <= 150:
+            self.y = 110
+        if 760 <= self.x <= 800 and 150 <= self.y <= 700:
+            self.x = 760
+
 
     def draw(self):
         pygame.draw.rect(self.screen, (255, 255, 0), (self.x, self.y, self.size, self.size))
         self.rect = pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
     def collision(self):
-        pass
+        self.x = self.orig_x
+        self.y = self.orig_y
 
 
 def main():
@@ -56,6 +72,16 @@ def main():
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (150, 0, 50, 550)))
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (screen.get_width() - 200, screen.get_height() - 550, 50, 550)))
 
+    balls = []
+    for i in range(225,726, 100):
+        E1 = enemy.Ball(screen, i,699 , 0, 10, 15, (0, 0, 255))
+        balls.append(E1)
+
+
+    for i in range(275, 776, 100):
+        E1 = enemy.Ball(screen, i, 16, 0, 10, 15, (0, 0, 255))
+        balls.append(E1)
+
     while True:
         clock.tick(30)
         for event in pygame.event.get():
@@ -66,16 +92,16 @@ def main():
         dx = 0
         dy = 0
         if pressed_keys[pygame.K_a] or pressed_keys[pygame.K_LEFT]:
-            dx = - 5
+            dx = - 8
 
         if pressed_keys[pygame.K_d] or pressed_keys[pygame.K_RIGHT]:
-            dx = 5
+            dx = 8
 
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
 
-            dy = - 5
+            dy = - 8
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
-            dy = 5
+            dy = 8
         new_x = p1.x + dx
         new_y = p1.y + dy
         hit_any = False
@@ -86,28 +112,18 @@ def main():
             p1.move(dx, dy)
 
             # TODO: Add you events code
+
         # TODO: Fill the screen with whatever background color you like!
         screen.fill((255, 255, 255))
         pygame.draw.rect(screen, (98, 226, 108), (0, 0, 150, 150))
         pygame.draw.rect(screen, (98, 226, 108), (screen.get_width()-150, screen.get_height()-150, 150, 150))
-        pygame.draw.rect(screen, (0, 0, 0), (150, 0, 50, 550))
-        pygame.draw.rect(screen, (0, 0, 0), (screen.get_width() - 200, screen.get_height() - 550, 50, 550))
-
-        pygame.draw.circle(screen, (0, 0, 255), (275, 16), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (375, 16), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (475, 16), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (575, 16), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (675, 16), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (775, 16), 15)
-
-        pygame.draw.circle(screen, (0, 0, 255), (225, screen.get_height() - 15), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (325, screen.get_height() - 15), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (425, screen.get_height() - 15), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (525, screen.get_height() - 15), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (625, screen.get_height() - 15), 15)
-        pygame.draw.circle(screen, (0, 0, 255), (725, screen.get_height() - 15), 15)
-
-
+        pygame.draw.rect(screen, (0, 0, 0), (150,0, 50, 550))
+        pygame.draw.rect(screen, (0, 0, 0), (screen.get_width()-200, screen.get_height()-550, 50, 550))
+        for ball in balls:
+            ball.draw()
+            ball.move()
+            if ball.shape.colliderect(p1.x,p1.y, p1.size,p1.size):
+                p1.collision()
         p1.draw()
 
         # for wall in walls:

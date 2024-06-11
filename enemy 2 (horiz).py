@@ -12,18 +12,16 @@ class Ball:
         self.ball_color = color
         self.x = x
         self.y = y
-        self.shape= None
     def move(self):
-        self.y = self.y + self.y_speed
-        self.x = self.x + 0
+        self.y = self.y + 0
+        self.x = self.x + self.x_speed
         if self.x >= self.screen.get_width() or self.x <= 0:
             self.x_speed = -self.x_speed
         if self.y >= self.screen.get_height() or self.y <= 0:
             self.y_speed = -self.y_speed
 # dTODO: Possible member variables: screen, color, x, y, radius, speed_x, speed_y
     def draw(self):
-       self.shape = pygame.draw.circle(self.screen, self.ball_color, (self.x, self.y), radius = self.radius)
-
+        pygame.draw.circle(self.screen, self.ball_color, (self.x, self.y), radius = self.radius)
 
 
 
@@ -61,5 +59,5 @@ def main():
             ball.draw()
         pygame.display.update()
 
-if __name__ == "__main__":
-    main()
+
+main()
