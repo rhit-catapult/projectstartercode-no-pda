@@ -3,7 +3,6 @@ import sys
 import math
 import wall_class
 
-
 import enemy
 class Player:
     def __init__(self, screen, x, y):
@@ -52,6 +51,7 @@ def main():
     walls = []
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (150, 0, 50, 550)))
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (screen.get_width() - 200, screen.get_height() - 550, 50, 550)))
+
     balls = []
     for i in range(225,726, 100):
         E1 = enemy.Ball(screen, i,699 , 0, 10, 15, (0, 0, 255))
