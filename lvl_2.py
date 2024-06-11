@@ -33,33 +33,24 @@ class Player:
         self.x = self.orig_x
         self.y = self.orig_y
 
+class Level2:
+    def __init__(self, screen):
+        self.screen = screen
+        self.walls = []
+        self.has_won = False
+        # create all walls
+        self.p1 = Player(screen, 55, 55)
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 0, 850, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 650, 850, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (850, 0, 150, 550)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 150, 150, 550)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 150, 150, 150)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 400, 150, 150)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 150, 150, 150)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 400, 150, 150)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (400, 300, 200, 100)))
 
-def main():
-    # turn on pygame
-    pygame.init()
-
-    # create a screen
-    pygame.display.set_caption("No PDA!")
-    # Done: Change the size of the screen as you see fit!
-    screen = pygame.display.set_mode((1000, 700))
-
-    p1 = Player(screen, 55, 55)
-
-    # let's set the framerate
-    clock = pygame.time.Clock()
-    walls = []
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 0, 850, 50)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 650, 850, 50)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (850, 0, 150, 550)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 150, 150, 550)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 150, 150, 150)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 400, 150, 150)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 150, 150, 150)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 400, 150, 150)))
-    walls.append(pygame.draw.rect(screen, (30, 180, 80), (400, 300, 200, 100)))
-
-    while True:
-        clock.tick(30)
+    def main_loop(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -74,43 +65,57 @@ def main():
             dx = 5
 
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
-
             dy = - 5
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
             dy = 5
-        new_x = p1.x + dx
-        new_y = p1.y + dy
+        new_x = self.p1.x + dx
+        new_y = self.p1.y + dy
         hit_any = False
-        for wall in walls:
-            if wall.colliderect(new_x, new_y, p1.size, p1.size):
+        for wall in self.walls:
+            if wall.colliderect(new_x, new_y, self.p1.size, self.p1.size):
                 hit_any = True
         if not hit_any:
-            p1.move(dx, dy)
+            self.p1.move(dx, dy)
 
             # TODO: Add you events code
 
         # TODO: Fill the screen with whatever background color you like!
-        screen.fill((255, 255, 255))
-        pygame.draw.rect(screen, (98, 226, 108), (0, 0, 150, 150))
-        pygame.draw.rect(screen, (98, 226, 108), (screen.get_width()-150, screen.get_height()-150, 150, 150))
-        pygame.draw.rect(screen, (30, 180, 80), (150, 0, 850, 50))
-        pygame.draw.rect(screen, (30, 180, 80), (0, 650, 850, 50))
-        pygame.draw.rect(screen, (30, 180, 80), (850, 0, 150, 550))
-        pygame.draw.rect(screen, (30, 180, 80), (0, 150, 150, 550))
-        pygame.draw.rect(screen, (30, 180, 80), (150, 150, 150, 150))
-        pygame.draw.rect(screen, (30, 180, 80), (150, 400, 150, 150))
-        pygame.draw.rect(screen, (30, 180, 80), (700, 150, 150, 150))
-        pygame.draw.rect(screen, (30, 180, 80), (700, 400, 150, 150))
-        pygame.draw.rect(screen, (30, 180, 80), (400, 300, 200, 100))
+        self.screen.fill((255, 255, 255))
+        pygame.draw.rect(self.screen, (98, 226, 108), (0, 0, 150, 150))
+        pygame.draw.rect(self.screen, (98, 226, 108), (self.screen.get_width() - 150, self.screen.get_height() - 150, 150, 150))
+        pygame.draw.rect(self.screen, (30, 180, 80), (150, 0, 850, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (0, 650, 850, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (850, 0, 150, 550))
+        pygame.draw.rect(self.screen, (30, 180, 80), (0, 150, 150, 550))
+        pygame.draw.rect(self.screen, (30, 180, 80), (150, 150, 150, 150))
+        pygame.draw.rect(self.screen, (30, 180, 80), (150, 400, 150, 150))
+        pygame.draw.rect(self.screen, (30, 180, 80), (700, 150, 150, 150))
+        pygame.draw.rect(self.screen, (30, 180, 80), (700, 400, 150, 150))
+        pygame.draw.rect(self.screen, (30, 180, 80), (400, 300, 200, 100))
 
-        p1.draw()
+        self.p1.draw()
 
         # for wall in walls:
         #     if wall.colliderect(p1.x, p1.y, p1.size, p1.size):
         #         print("Collision!")
 
 
-        pygame.display.update()
+
+
+def main():
+    # turn on pygame
+    pygame.init()
+
+    # create a screen
+    pygame.display.set_caption("No PDA!")
+    # Done: Change the size of the screen as you see fit!
+    screen = pygame.display.set_mode((1000, 700))
+
+
+
+
+
+
 
 main()
 
