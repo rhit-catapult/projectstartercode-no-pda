@@ -11,11 +11,8 @@ class Player:
         self.screen = screen
         self.size = 40
         self.rect = None
-
-        #gg
         self.orig_x = x
         self.orig_y = y
-     #gg
     def move(self, dx, dy):
         self.x += dx
         self.y += dy
