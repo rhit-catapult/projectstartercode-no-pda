@@ -3,6 +3,7 @@ import sys
 import math
 import wall_class
 
+
 import enemy
 class Player:
     def __init__(self, screen, x, y):
@@ -17,31 +18,13 @@ class Player:
         self.x += dx
         self.y += dy
         if self.x > self.screen.get_width() - self.size:
-            self.x = self.screen.get_width() - self.size
+           self.x = self.screen.get_width() - self.size
         if self.x < 0:
             self.x = 0
         if self.y > self.screen.get_height() - self.size:
             self.y = self.screen.get_height() - self.size
         if self.y < 0:
             self.y = 0
-
-
-
-
-
-
-        if 110 <= self.x <= 116 and 0 <= self.y <= 551:
-            self.x = 110
-        if 111 <= self.x <= 200 and 540 <= self.y <=550:
-            self.y = 550
-        if 200 >= self.x >= 190 and 0 <= self.y <= 550:
-            self.x = 200
-        if 800 <= self.x <= 850 and 150 <= self.y <= 700:
-            self.x = 850
-        if 760 <= self.x <= 850 and 110 <= self.y <= 150:
-            self.y = 110
-        if 760 <= self.x <= 800 and 150 <= self.y <= 700:
-            self.x = 760
 
 
     def draw(self):
@@ -55,7 +38,8 @@ class Player:
 def main():
     # turn on pygame
     pygame.init()
-
+    pygame.mixer_music.load("music.mp3")
+    pygame.mixer_music.play(-1)
     # create a screen
     pygame.display.set_caption("No PDA!")
     # Done: Change the size of the screen as you see fit!
@@ -68,7 +52,6 @@ def main():
     walls = []
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (150, 0, 50, 550)))
     walls.append(pygame.draw.rect(screen, (0, 0, 0), (screen.get_width() - 200, screen.get_height() - 550, 50, 550)))
-
     balls = []
     for i in range(225,726, 100):
         E1 = enemy.Ball(screen, i,699 , 0, 10, 15, (0, 0, 255))
@@ -80,7 +63,7 @@ def main():
         balls.append(E1)
 
     while True:
-        clock.tick(30)
+        clock.tick(45)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -89,16 +72,16 @@ def main():
         dx = 0
         dy = 0
         if pressed_keys[pygame.K_a] or pressed_keys[pygame.K_LEFT]:
-            dx = - 8
+            dx = - 5
 
         if pressed_keys[pygame.K_d] or pressed_keys[pygame.K_RIGHT]:
-            dx = 8
+            dx = 5
 
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
 
-            dy = - 8
+            dy = - 5
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
-            dy = 8
+            dy = 5
         new_x = p1.x + dx
         new_y = p1.y + dy
         hit_any = False
