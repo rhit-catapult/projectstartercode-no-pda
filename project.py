@@ -25,25 +25,6 @@ class Player:
         if self.y < 0:
             self.y = 0
 
-
-
-
-
-
-        if 110 <= self.x <= 116 and 0 <= self.y <= 551:
-            self.x = 110
-        if 111 <= self.x <= 200 and 540 <= self.y <=550:
-            self.y = 550
-        if 200 >= self.x >= 190 and 0 <= self.y <= 550:
-            self.x = 200
-        if 800 <= self.x <= 850 and 150 <= self.y <= 700:
-            self.x = 850
-        if 760 <= self.x <= 850 and 110 <= self.y <= 150:
-            self.y = 110
-        if 760 <= self.x <= 800 and 150 <= self.y <= 700:
-            self.x = 760
-
-
     def draw(self):
         pygame.draw.rect(self.screen, (255, 255, 0), (self.x, self.y, self.size, self.size))
         self.rect = pygame.draw.rect(self.screen, (152, 144, 2), (self.x, self.y, self.size, self.size), 4)
