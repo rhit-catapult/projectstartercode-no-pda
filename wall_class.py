@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 cube_size = 40
 
 class Wall:

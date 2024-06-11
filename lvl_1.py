@@ -71,17 +71,17 @@ def main():
         pressed_keys = pygame.key.get_pressed()
         dx = 0
         dy = 0
+        player_speed = 5
         if pressed_keys[pygame.K_a] or pressed_keys[pygame.K_LEFT]:
-            dx = - 5
+            dx = - player_speed
 
         if pressed_keys[pygame.K_d] or pressed_keys[pygame.K_RIGHT]:
-            dx = 5
+            dx = player_speed
 
         if pressed_keys[pygame.K_w] or pressed_keys[pygame.K_UP]:
-
-            dy = - 5
+            dy = - player_speed
         if pressed_keys[pygame.K_s] or pressed_keys[pygame.K_DOWN]:
-            dy = 5
+            dy = player_speed
         new_x = p1.x + dx
         new_y = p1.y + dy
         hit_any = False
@@ -105,6 +105,10 @@ def main():
             if ball.shape.colliderect(p1.x,p1.y, p1.size,p1.size):
                 p1.collision()
         p1.draw()
+        if 510 <= p1.x <= 1000 and 530 <= p1.y <= 700:
+            screen.fill((0, 0, 0))
+
+
 
         # for wall in walls:
         #     if wall.colliderect(p1.x, p1.y, p1.size, p1.size):
