@@ -25,6 +25,8 @@ def main():
     lvl2 = None
     jumpscare = False
     counselor_images = ["aaron.png", "anahita.png", "anthony.png", "brayden.png", "claire.png", "eathan.png", "eli.png", "elley.png", "emmet.png", "eric.png", "fox.png", "kali.png", "michael.png", "reid.png", "ruby.png", "tyler.png", "coon.png"]
+    deaths = 0
+
     loaded_images = []
     for c in counselor_images:
         image = pygame.image.load("Counselor_Images/" + c)
@@ -34,6 +36,10 @@ def main():
     image_index = 0
     boom_sound = pygame.mixer.Sound("samples/vine-boom.mp3")
 
+    font1 = pygame.font.SysFont("geneva", 40)
+    caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
+
+    print(pygame.font.get_fonts())
     while True:
         clock.tick(45)
         for event in pygame.event.get():
@@ -43,6 +49,8 @@ def main():
         if level == 1:
             lvl1.main_loop()
             if lvl1.has_died:
+                deaths += 1
+                caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
                 lvl1.has_died = False
                 alpha = 255
                 jumpscare = True
@@ -56,6 +64,8 @@ def main():
             lvl2.main_loop()
             if lvl2.has_died:
                 lvl2.has_died = False
+                deaths += 1
+                caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
                 alpha = 255
                 jumpscare = True
                 image_index = random.randint(0, len(loaded_images)-1)
@@ -76,7 +86,7 @@ def main():
             if alpha <= 0:
                 jumpscare = False
 
-
+        window.blit(caption1, (650, 5))
 
 
         pygame.display.update()
