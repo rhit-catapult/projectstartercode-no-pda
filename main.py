@@ -23,7 +23,9 @@ def main():
     level = 1
     lvl1 = lvl_1.Level1(screen)
     lvl2 = None
-    jumpscare = False
+    jumpscare_pda = False
+    jumpscare_grass = False
+
     counselor_images = ["aaron.png", "anahita.png", "anthony.png", "brayden.png", "claire.png", "eathan.png", "eli.png", "elley.png", "emmet.png", "eric.png", "fox.png", "kali.png", "michael.png", "reid.png", "ruby.png", "tyler.png", "coon.png"]
     deaths = 0
 
@@ -53,7 +55,7 @@ def main():
                 caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
                 lvl1.has_died = False
                 alpha = 255
-                jumpscare = True
+                jumpscare_pda = True
                 image_index = random.randint(0, len(loaded_images)-1)
                 boom_sound.play()
 
@@ -67,12 +69,34 @@ def main():
                 deaths += 1
                 caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
                 alpha = 255
-                jumpscare = True
+                jumpscare_pda = True
+                image_index = random.randint(0, len(loaded_images)-1)
+                boom_sound.play()
+
+            if lvl2.has_touched_grass:
+                lvl2.has_touched_grass = False
+                deaths += 1
+                caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
+                alpha = 255
+                jumpscare_grass = True
                 image_index = random.randint(0, len(loaded_images)-1)
                 boom_sound.play()
 
         window.blit(screen, (0, 0))
-        if jumpscare:
+        if jumpscare_pda:
+            pos = (0, 0, screen.get_width(), screen.get_height())
+            image_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
+            if image_index == 16:
+                image_surf.blit(loaded_images[image_index], (-325, 100))
+            else:
+                image_surf.blit(loaded_images[image_index], (-230, -245))
+            image_surf.set_alpha(alpha)
+            window.blit(image_surf, pos)
+            alpha -= 5
+            if alpha <= 0:
+                jumpscare_pda = False
+
+        if jumpscare_grass:
             pos = (0, 0, screen.get_width(), screen.get_height())
             image_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
             if image_index == 16:
@@ -84,7 +108,8 @@ def main():
 
             alpha -= 5
             if alpha <= 0:
-                jumpscare = False
+                jumpscare_grass = False
+
 
         window.blit(caption1, (650, 5))
 

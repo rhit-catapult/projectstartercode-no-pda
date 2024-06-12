@@ -42,6 +42,7 @@ class Level1:
         self.p1 = Player(screen, 55, 55)
         self.has_died = False
 
+
         # let's set the framerate
         clock = pygame.time.Clock()
         self.walls.append(pygame.draw.rect(screen, (0, 0, 0), (150, 0, 50, 550)))
