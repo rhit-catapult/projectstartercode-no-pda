@@ -63,7 +63,7 @@ class Level2:
         self.balls.append(b)
         b = new_enemy.New_Ball(screen, 165, 575, sped, 0, 15, (0, 0, 255),835,165)
         self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 825, 625, -sped, 0, 15, (0, 0, 255),835,165)
+        b = new_enemy.New_Ball(screen, 820, 625, -sped, 0, 15, (0, 0, 255),835,165)
         self.balls.append(b)
         b = new_enemy.New_Ball(screen, 615, 325, -sped+4, 0, 15, (0, 0, 255),835,614)
         self.balls.append(b)
