@@ -5,6 +5,7 @@ import wall_class
 import lvl_1
 import lvl_2
 import enemy
+import enemy_2
 
 def main():
     pygame.init()

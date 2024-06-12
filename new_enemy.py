@@ -3,8 +3,8 @@ import sys
 
 balls = []
 
-class Ball:
-    def __init__(self, screen, x, y, x_speed, y_speed, ball_size, color, stop):
+class New_Ball:
+    def __init__(self, screen, x, y, x_speed, y_speed, ball_size, color, stop,start):
         self.radius = ball_size
         self.x_speed = x_speed
         self.y_speed = y_speed
@@ -13,14 +13,13 @@ class Ball:
         self.x = x
         self.y = y
         self.shape= None
-        self.stop_x = x
+        self.stop_x = stop
+        self.start_x = start
     def move(self):
         self.y = self.y + 0
         self.x = self.x + self.x_speed
-        if self.x >= self.screen.get_width() or self.x <= 0:
+        if self.x >= self.stop_x or self.x <= self.start_x:
             self.x_speed = -self.x_speed
-        if self.y >= self.screen.get_height() or self.y <= 0:
-            self.y_speed = -self.y_speed
 # dTODO: Possible member variables: screen, color, x, y, radius, speed_x, speed_y
     def draw(self):
         self.shape = pygame.draw.circle(self.screen, self.ball_color, (self.x, self.y), radius = self.radius)
