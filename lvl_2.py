@@ -2,7 +2,7 @@ import pygame
 import sys
 import wall_class
 import math
-import wall_class
+
 
 import enemy
 class Player:
@@ -74,6 +74,7 @@ class Level2:
         for wall in self.walls:
             if wall.colliderect(new_x, new_y, self.p1.size, self.p1.size):
                 hit_any = True
+                self.p1.collision()
         if not hit_any:
             self.p1.move(dx, dy)
 
