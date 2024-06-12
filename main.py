@@ -24,7 +24,7 @@ def main():
     lvl1 = lvl_1.Level1(screen)
     lvl2 = None
     jumpscare = False
-    counselor_images = ["aaron.png", "anahita.png", "anthony.png", "brayden.png", "claire.png", "eathan.png", "eli.png", "elley.png", "emmet.png", "eric.png", "fox.png", "kali.png", "michael.png", "reid.png", "ruby.png", "tyler.png"]
+    counselor_images = ["aaron.png", "anahita.png", "anthony.png", "brayden.png", "claire.png", "eathan.png", "eli.png", "elley.png", "emmet.png", "eric.png", "fox.png", "kali.png", "michael.png", "reid.png", "ruby.png", "tyler.png", "coon.png"]
     loaded_images = []
     for c in counselor_images:
         image = pygame.image.load("Counselor_Images/" + c)
@@ -65,7 +65,10 @@ def main():
         if jumpscare:
             pos = (0, 0, screen.get_width(), screen.get_height())
             image_surf = pygame.Surface(screen.get_size(), pygame.SRCALPHA)
-            image_surf.blit(loaded_images[image_index], (-230, -245))
+            if image_index == 16:
+                image_surf.blit(loaded_images[image_index], (-325, 100))
+            else:
+                image_surf.blit(loaded_images[image_index], (-230, -245))
             image_surf.set_alpha(alpha)
             window.blit(image_surf, pos)
 
