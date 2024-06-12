@@ -40,6 +40,7 @@ class Level1:
         self.has_won = False
         # create all walls
         self.p1 = Player(screen, 55, 55)
+        self.has_died = False
 
         # let's set the framerate
         clock = pygame.time.Clock()
@@ -92,6 +93,7 @@ class Level1:
             ball.move()
             if ball.shape.colliderect(self.p1.x, self.p1.y, self.p1.size, self.p1.size):
                 self.p1.collision()
+                self.has_died = True
         self.p1.draw()
         if 850 <= self.p1.x <= 1000 and 530 <= self.p1.y <= 700:
             self.has_won = True

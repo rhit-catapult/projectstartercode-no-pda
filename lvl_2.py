@@ -40,6 +40,7 @@ class Level2:
         self.has_won = False
         # create all walls
         self.p1 = Player(screen, 55, 55)
+        self.has_died = False
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 0, 850, 50)))
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 650, 850, 50)))
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (850, 0, 150, 550)))
@@ -75,6 +76,7 @@ class Level2:
             if wall.colliderect(new_x, new_y, self.p1.size, self.p1.size):
                 hit_any = True
                 self.p1.collision()
+                self.has_died = True
         if not hit_any:
             self.p1.move(dx, dy)
 
