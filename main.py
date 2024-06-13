@@ -4,8 +4,11 @@ import random
 import wall_class
 import lvl_1
 import lvl_2
+import lvl_3
+import ending
 import enemy
 import enemy_2
+
 
 def main():
     pygame.init()
@@ -21,8 +24,11 @@ def main():
     # let's set the framerate
     clock = pygame.time.Clock()
     level = 1
+    #end = ending.Ending(screen)
     lvl1 = lvl_1.Level1(screen)
     lvl2 = None
+    lvl3 = None
+    end = None
     jumpscare_pda = False
     jumpscare_grass = False
 
@@ -41,7 +47,7 @@ def main():
     font1 = pygame.font.SysFont("geneva", 40)
     caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
 
-    print(pygame.font.get_fonts())
+
     while True:
         clock.tick(45)
         for event in pygame.event.get():
@@ -62,6 +68,7 @@ def main():
             if lvl1.has_won:
                 level += 1
                 lvl2 = lvl_2.Level2(screen)
+
         if level == 2:
             lvl2.main_loop()
             if lvl2.has_died:
@@ -82,6 +89,37 @@ def main():
                 image_index = random.randint(0, len(loaded_images)-1)
                 boom_sound.play()
 
+            if lvl2.has_won:
+                level += 1
+                lvl3 = lvl_3.Level3(screen)
+
+        if level == 3:
+            lvl3.main_loop()
+            if lvl3.has_died:
+                lvl3.has_died = False
+                deaths += 1
+                caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
+                alpha = 255
+                jumpscare_pda = True
+                image_index = random.randint(0, len(loaded_images)-1)
+                boom_sound.play()
+
+            if lvl3.has_touched_grass:
+                lvl3.has_touched_grass = False
+                deaths += 1
+                caption1 = font1.render(f"Funishments:{deaths}", True, pygame.Color("Black"))
+                alpha = 255
+                jumpscare_grass = True
+                image_index = random.randint(0, len(loaded_images)-1)
+                boom_sound.play()
+
+            if lvl3.has_won:
+                level += 1
+                end = ending.Ending(screen)
+
+            if level == 4:
+                end.main_loop()
+
         window.blit(screen, (0, 0))
         if jumpscare_pda:
             pos = (0, 0, screen.get_width(), screen.get_height())
@@ -92,6 +130,7 @@ def main():
                 image_surf.blit(loaded_images[image_index], (-230, -245))
             image_surf.set_alpha(alpha)
             window.blit(image_surf, pos)
+
             alpha -= 5
             if alpha <= 0:
                 jumpscare_pda = False
@@ -110,10 +149,9 @@ def main():
             if alpha <= 0:
                 jumpscare_grass = False
 
-
         window.blit(caption1, (650, 5))
 
-
         pygame.display.update()
+
 
 main()

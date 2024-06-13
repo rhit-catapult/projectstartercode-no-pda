@@ -34,7 +34,7 @@ class Player:
         self.x = self.orig_x
         self.y = self.orig_y
 
-class Level2:
+class Level3:
     def __init__(self, screen):
         self.screen = screen
         self.walls = []
@@ -43,45 +43,19 @@ class Level2:
         self.p1 = Player(screen, 55, 55)
         self.has_died = False
         self.has_touched_grass = False
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 0, 850, 50)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 650, 850, 50)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (850, 0, 150, 550)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (0, 150, 150, 550)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 150, 150, 150)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 400, 150, 150)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 150, 150, 150)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (700, 400, 150, 150)))
-        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (400, 300, 200, 100)))
-        sped = 8
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (150, 0, 50, 600)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (300, 150, 50, 550)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (450, 0, 50, 550)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (600, 100, 50, 600)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (650, 150, 250, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (650, 400, 250, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 300, 250, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 500, 250, 50)))
+        self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 500, 50, 150)))
+        # sped = 8
         self.balls = []
-        b = new_enemy.New_Ball(screen, 165, 75, sped, 0, 15, (0, 0, 255),835,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 820, 125, -sped, 0, 15, (0, 0, 255),835,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 165, 325, sped-4, 0, 15, (0, 0, 255),385,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 365, 375, -sped+4, 0, 15, (0, 0, 255),385,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 165, 575, sped, 0, 15, (0, 0, 255),835,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 820, 625, -sped, 0, 15, (0, 0, 255),835,165)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 615, 325, -sped+4, 0, 15, (0, 0, 255),835,614)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 825, 375, -sped + 4, 0, 15, (0, 0, 255),835,614)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 315, 275, sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 315, 175, sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 665, 425, -sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 665, 525, -sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 665, 225, -sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
-        b = new_enemy.New_Ball(screen, 315, 475, sped, 0, 15, (0, 0, 255),685,316)
-        self.balls.append(b)
+        # b = new_enemy.New_Ball(screen, 165, 75, sped, 0, 15, (0, 0, 255),835,165)
+        # self.balls.append(b)
 
 
 
@@ -123,15 +97,16 @@ class Level2:
         self.screen.fill((255, 255, 255))
         pygame.draw.rect(self.screen, (98, 226, 108), (0, 0, 150, 150))
         pygame.draw.rect(self.screen, (98, 226, 108), (self.screen.get_width() - 150, self.screen.get_height() - 150, 150, 150))
-        pygame.draw.rect(self.screen, (30, 180, 80), (150, 0, 850, 50))
-        pygame.draw.rect(self.screen, (30, 180, 80), (0, 650, 850, 50))
-        pygame.draw.rect(self.screen, (30, 180, 80), (850, 0, 150, 550))
-        pygame.draw.rect(self.screen, (30, 180, 80), (0, 150, 150, 550))
-        pygame.draw.rect(self.screen, (30, 180, 80), (150, 150, 150, 150))
-        pygame.draw.rect(self.screen, (30, 180, 80), (150, 400, 150, 150))
-        pygame.draw.rect(self.screen, (30, 180, 80), (700, 150, 150, 150))
-        pygame.draw.rect(self.screen, (30, 180, 80), (700, 400, 150, 150))
-        pygame.draw.rect(self.screen, (30, 180, 80), (400, 300, 200, 100))
+        pygame.draw.rect(self.screen, (30, 180, 80), (150, 0, 50, 600))
+        pygame.draw.rect(self.screen, (30, 180, 80), (300, 150, 50, 550))
+        pygame.draw.rect(self.screen, (30, 180, 80), (450, 0, 50, 550))
+        pygame.draw.rect(self.screen, (30, 180, 80), (600, 100, 50, 600))
+        pygame.draw.rect(self.screen, (30, 180, 80), (650, 150, 250, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (650, 400, 250, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (750, 300, 250, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (750, 500, 250, 50))
+        pygame.draw.rect(self.screen, (30, 180, 80), (750, 500, 50, 150))
+
         for ball in self.balls:
             ball.move()
             ball.draw()
@@ -139,10 +114,9 @@ class Level2:
                 self.p1.collision()
                 self.has_died = True
 
-        # if 850 <= self.p1.x <= 1000 and 530 <= self.p1.y <= 700:
-        if 0 <= self.p1.x <= 1000 and 200 <= self.p1.y <= 700:
+        # if 0 <= self.p1.x <= 1000 and 200 <= self.p1.y <= 700:
+        if 850 <= self.p1.x <= 1000 and 530 <= self.p1.y <= 700:
             self.has_won = True
-
 
         self.p1.draw()
 
