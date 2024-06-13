@@ -4,6 +4,8 @@ import enemy_2
 import math
 import wall_class
 import new_enemy
+import new_enemy_2
+import enemy
 
 import enemy
 class Player:
@@ -52,8 +54,59 @@ class Level3:
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 300, 250, 50)))
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 500, 250, 50)))
         self.walls.append(pygame.draw.rect(screen, (30, 180, 80), (750, 500, 50, 150)))
-        # sped = 8
+        sped = 8
         self.balls = []
+
+
+        for i in range(175,675, 100):
+            E1 = new_enemy.New_Ball(screen, 15, i, sped, 0, 15, (0, 0, 255),135,15)
+            self.balls.append(E1)
+        for i in range(225,625, 100):
+            E1 = new_enemy.New_Ball(screen, 135, i, -sped, 0, 15, (0, 0, 255),135,15)
+            self.balls.append(E1)
+        for i in range(675, 925, 100):
+            E1 = new_enemy_2.New_Ball2(screen, i, 135, 0, -sped, 15, (0, 0, 255), 135, 15)
+            self.balls.append(E1)
+        for i in range(725,925,100):
+            E1 = new_enemy_2.New_Ball2(screen, i, 15,0,sped, 15,(0,0,255),135,15)
+            self.balls.append(E1)
+        for i in range(775,975,100):
+            E1 = new_enemy_2.New_Ball2(screen, i, 270,0,sped-2, 15,(0,0,255),275,225)
+            self.balls.append(E1)
+
+        b = enemy.Ball(screen, 225, 685, 0, sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = enemy.Ball(screen, 275, 15, 0, -sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = new_enemy_2.New_Ball2(screen, 325, 135, 0, -sped, 15, (0, 0, 255), 135, 15)
+        self.balls.append(b)
+        b = enemy.Ball(screen, 375, 685, 0, -sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = enemy.Ball(screen, 425, 15, 0, sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = new_enemy_2.New_Ball2(screen, 475, 565, 0, sped, 15, (0, 0, 255), 685, 565)
+        self.balls.append(b)
+        b = enemy.Ball(screen, 525, 685, 0, -sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = enemy.Ball(screen, 575, 15, 0, sped, 15, (0, 0, 255))
+        self.balls.append(b)
+        b = new_enemy.New_Ball(screen, 915, 175, sped, 0, 15, (0, 0, 255), 985, 915)
+        self.balls.append(b)
+        b = new_enemy_2.New_Ball2(screen, 825, 215, 0, sped, 15, (0, 0, 255),285,215 )
+        self.balls.append(b)
+        b = new_enemy.New_Ball(screen, 675, 375, sped, 0, 15, (0, 0, 255),985,675 )
+        self.balls.append(b)
+        b = new_enemy.New_Ball(screen, 985, 475, -sped, 0, 15, (0, 0, 255),985,675 )
+        self.balls.append(b)
+        b = new_enemy.New_Ball(screen, 735, 575, -sped, 0, 15, (0, 0, 255),735,685 )
+        self.balls.append(b)
+        b = new_enemy.New_Ball(screen, 675, 625, sped, 0, 15, (0, 0, 255),725,675 )
+        self.balls.append(b)
+        b = new_enemy_2.New_Ball2(screen, 825, 575, 0, sped, 15, (0, 0, 255),685,575 )
+        self.balls.append(b)
+
+
+
         # b = new_enemy.New_Ball(screen, 165, 75, sped, 0, 15, (0, 0, 255),835,165)
         # self.balls.append(b)
 

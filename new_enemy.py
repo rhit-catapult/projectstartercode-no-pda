@@ -1,6 +1,7 @@
 import pygame
 import sys
 
+
 balls = []
 
 class New_Ball:
