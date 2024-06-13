@@ -97,7 +97,7 @@ class Level1:
                 self.has_died = True
         self.p1.draw()
         #if 850 <= self.p1.x <= 1000 and 530 <= self.p1.y <= 700:
-        if 0 <= self.p1.x <= 1000 and 600 <= self.p1.y <= 700:
+        if 850 <= self.p1.x <= 1000 and 530 <= self.p1.y <= 700:
             self.has_won = True
 
         # for wall in walls:
