@@ -8,5 +8,5 @@ class Ending:
     def main_loop(self):
         self.screen.fill((0, 0, 0))
         font2 = pygame.font.SysFont("geneva", 100)
-        caption2 = font2.render("Congrats", True, pygame.Color("Red"))
+        caption2 = font2.render("Congrass", True, pygame.Color("Red"))
         self.screen.blit(caption2, (300, 300))
